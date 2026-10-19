@@ -1,0 +1,1540 @@
+
+/* =========================================
+   1. ЗАГАЛЬНІ НАЛАШТУВАННЯ
+========================================= */
+
+:root {
+    --blue-dark: #123b8a;
+    --blue: #2563eb;
+    --blue-light: #38bdf8;
+    --text: #172033;
+    --heading: #102f56;
+    --muted: #303846;
+    --background: #f5f8ff;
+    --border: #e2eaf6;
+    --gradient: linear-gradient(
+        110deg,
+        #123b8a 0%,
+        #2563eb 55%,
+        #38bdf8 100%
+    );
+    --shadow: 0 8px 28px rgba(28, 69, 130, 0.07);
+    --shadow-hover: 0 15px 32px rgba(28, 69, 130, 0.13);
+    --dropdown-color: #17458d;
+    --practice-menu-color: #17458d;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scrollbar-gutter: stable;
+}
+
+body {
+    min-height: 100vh;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: var(--background);
+    color: var(--text);
+    line-height: 1.65;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    font: inherit;
+}
+
+img {
+    max-width: 100%;
+}
+
+h1,
+h2,
+h3 {
+    color: var(--heading);
+}
+
+/* =========================================
+   2. ГОЛОВНЕ МЕНЮ
+========================================= */
+
+.site-header {
+    position: relative;
+    z-index: 100;
+    background: var(--gradient);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+}
+
+.site-nav {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.site-menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    list-style: none;
+}
+
+.site-menu > li {
+    position: relative;
+}
+
+.site-menu > li > a,
+.site-menu > li > .dropdown-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 5px 0;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: white;
+    font-family: inherit;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.4;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background 0.18s ease, transform 0.18s ease;
+}
+
+.site-menu > li > a:hover,
+.site-menu > li > .dropdown-toggle:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-2px) scale(1.02);
+}
+
+.site-menu > li > a:focus-visible,
+.site-menu > li > .dropdown-toggle:focus-visible {
+    outline: 2px solid white;
+    outline-offset: 3px;
+}
+
+/* =========================================
+   3. ВИПАДАЮЧІ МЕНЮ
+========================================= */
+
+.dropdown {
+    position: relative;
+}
+
+.submenu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    z-index: 200;
+    display: none;
+    min-width: 210px;
+    padding: 8px 0;
+    transform: translateX(-50%);
+    border-radius: 10px;
+    background: var(--dropdown-color);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    list-style: none;
+    text-align: center;
+}
+
+.dropdown.open > .submenu {
+    display: block;
+}
+
+.submenu li {
+    list-style: none;
+}
+
+.submenu a {
+    display: block;
+    padding: 11px 18px;
+    color: white;
+    font-family: inherit;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.5;
+    white-space: nowrap;
+    transition: background 0.2s ease;
+}
+
+.submenu a:hover,
+.submenu a:focus-visible {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* =========================================
+   4. ПЕДАГОГІЧНА ПРАКТИКА
+========================================= */
+
+.practice-dropdown {
+    position: relative;
+}
+
+.practice-dropdown > .submenu {
+    min-width: 330px;
+    background: var(--practice-menu-color);
+    border-radius: 12px;
+    overflow: visible;
+}
+
+.practice-subdropdown {
+    position: relative;
+}
+
+.practice-subtoggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    padding: 11px 18px;
+    border: none;
+    background: transparent;
+    color: #ffffff;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.5;
+    text-align: left;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.practice-subtoggle:hover,
+.practice-subtoggle:focus-visible,
+.practice-subdropdown.subopen > .practice-subtoggle {
+    background: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+}
+
+.practice-subtoggle .practice-arrow {
+    color: #ffffff;
+    font-size: 15px;
+    flex-shrink: 0;
+}
+
+/* =========================================
+   5. ДРУГИЙ РІВЕНЬ МЕНЮ
+========================================= */
+
+.practice-submenu {
+    display: none;
+    position: absolute;
+    top: -8px;
+    left: calc(100% + 12px);
+    z-index: 300;
+    min-width: 300px;
+    margin: 0;
+    padding: 8px 0;
+    list-style: none;
+    background: var(--dropdown-color);
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+}
+
+.practice-subdropdown.subopen > .practice-submenu {
+    display: block;
+}
+
+.practice-submenu li {
+    list-style: none;
+}
+
+.practice-submenu li a {
+    display: block;
+    padding: 13px 16px;
+    color: #ffffff;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.5;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.practice-submenu li a:hover,
+.practice-submenu li a:focus-visible {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+/* =========================================
+   6. КОНТЕЙНЕР І ЗАГОЛОВКИ
+========================================= */
+
+.page-container {
+    width: min(1200px, 92%);
+    margin: 38px auto 80px;
+}
+
+.content-section {
+    margin-top: 72px;
+    scroll-margin-top: 25px;
+}
+
+.section-header {
+    margin-bottom: 26px;
+}
+
+.section-header.centered {
+    text-align: center;
+}
+
+.section-header h2 {
+    color: var(--heading);
+    font-size: clamp(27px, 3.5vw, 37px);
+    line-height: 1.25;
+}
+
+/* =========================================
+   7. ГОЛОВНА — ПРО САЙТ
+========================================= */
+
+.welcome-layout {
+    display: grid;
+    grid-template-columns: 1.45fr 1fr;
+    gap: 20px;
+}
+
+.welcome-main {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 365px;
+    padding: 46px;
+    border-radius: 24px;
+    background: var(--gradient);
+    color: white;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.welcome-main:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 32px rgba(28, 69, 130, 0.20);
+}
+
+.welcome-main h1 {
+    position: relative;
+    z-index: 1;
+    color: white;
+    font-size: clamp(34px, 4vw, 49px);
+    line-height: 1.15;
+    letter-spacing: -1px;
+}
+
+.welcome-main p {
+    position: relative;
+    z-index: 1;
+    max-width: 600px;
+    margin-top: 20px;
+    color: white;
+    font-size: 17px;
+    line-height: 1.85;
+    text-align: justify;
+}
+
+.welcome-decoration {
+    position: absolute;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.decoration-one {
+    width: 290px;
+    height: 290px;
+    right: -110px;
+    top: -115px;
+}
+
+.decoration-two {
+    width: 220px;
+    height: 220px;
+    right: 35px;
+    bottom: -145px;
+}
+
+/* =========================================
+   8. ШВИДКІ ПОСИЛАННЯ
+========================================= */
+
+.welcome-side {
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    gap: 14px;
+}
+
+.quick-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-width: 0;
+    padding: 20px 22px;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    background: white;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.quick-card:hover {
+    transform: translateX(5px);
+    box-shadow: 0 12px 30px rgba(28, 69, 130, 0.12);
+}
+
+.quick-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 60px;
+    height: 60px;
+    border-radius: 16px;
+    background: #e0f2fe;
+    font-size: 28px;
+}
+
+.quick-copy {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.quick-copy strong {
+    color: var(--heading);
+    font-size: 18px;
+    line-height: 1.35;
+}
+
+.quick-copy small {
+    margin-top: 5px;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.quick-arrow {
+    margin-left: auto;
+    color: var(--blue);
+    font-size: 23px;
+}
+
+/* =========================================
+   9. КНОПКИ
+========================================= */
+
+.pill-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    min-width: 110px;
+    padding: 10px 23px;
+    border: none;
+    border-radius: 30px;
+    background: var(--gradient);
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.4;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pill-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 18px rgba(37, 99, 235, 0.25);
+}
+
+.pill-button:focus-visible {
+    outline: 3px solid #93c5fd;
+    outline-offset: 3px;
+}
+
+/* =========================================
+   10. ГОЛОВНА — ПРАКТИЧНІ ЗАВДАННЯ
+========================================= */
+
+.activities-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.activity-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    min-height: 430px;
+    padding: 30px;
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    background: white;
+    box-shadow: var(--shadow);
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.activity-card:hover {
+    transform: translateY(-5px);
+    border-color: #93c5fd;
+    box-shadow: var(--shadow-hover);
+}
+
+.activity-image {
+    display: block;
+    width: 100%;
+    max-width: 360px;
+    height: 190px;
+    margin: 0 auto;
+    border-radius: 15px;
+    object-fit: contain;
+    object-position: center;
+}
+
+.activity-content {
+    width: 100%;
+    text-align: center;
+}
+
+.activity-content h3 {
+    margin-bottom: 15px;
+    color: var(--heading);
+    font-size: 27px;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+.activity-content p {
+    max-width: 480px;
+    margin: 0 auto;
+    color: var(--muted);
+    font-size: 17px;
+    line-height: 1.85;
+    letter-spacing: 0.1px;
+}
+
+.activity-card .pill-button {
+    align-self: center;
+    margin-top: auto;
+    min-width: 120px;
+}
+
+/* =========================================
+   11. ГОЛОВНА — ВІДЕОКУРСИ
+========================================= */
+
+.courses-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.course-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    background: white;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.course-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+.course-visual {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 185px;
+    background: var(--gradient);
+}
+
+.course-card:nth-child(2) .course-visual {
+    background: linear-gradient(120deg, #1d4ed8, #0ea5e9);
+}
+
+.course-card:nth-child(3) .course-visual {
+    background: linear-gradient(120deg, #1e40af, #6366f1);
+}
+
+.course-card:nth-child(4) .course-visual {
+    background: linear-gradient(120deg, #0369a1, #38bdf8);
+}
+
+.course-card:nth-child(5) .course-visual {
+    background: linear-gradient(120deg, #1e3a8a, #3b82f6);
+}
+
+.course-badge {
+    position: absolute;
+    top: 16px;
+    left: 17px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.17);
+    color: white;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.course-big-number {
+    color: rgba(255, 255, 255, 0.25);
+    font-size: 125px;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -6px;
+}
+
+.course-play {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    padding-left: 3px;
+    border-radius: 50%;
+    background: white;
+    color: var(--blue);
+    font-size: 21px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+.course-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    padding: 23px;
+    text-align: center;
+}
+
+.course-info h3 {
+    color: var(--heading);
+    font-size: 21px;
+    line-height: 1.4;
+}
+
+.course-info p {
+    margin-top: 7px;
+    color: var(--muted);
+    font-size: 16px;
+}
+
+.course-info .pill-button {
+    align-self: center;
+    margin-top: auto;
+    min-width: 110px;
+}
+
+.course-info p + .pill-button {
+    margin-top: 22px;
+}
+
+/* =========================================
+   12. ГОЛОВНА — ОСВІТНІ ПЛАТФОРМИ
+========================================= */
+
+.resources-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.resource-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    min-height: 230px;
+    padding: 24px 18px;
+    border: 1px solid var(--border);
+    border-radius: 17px;
+    background: white;
+    box-shadow: var(--shadow);
+    text-align: center;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.resource-item:hover {
+    transform: translateY(-4px);
+    border-color: #93c5fd;
+    box-shadow: 0 12px 28px rgba(28, 69, 130, 0.12);
+}
+
+/* Збільшені логотипи без сірого фону */
+
+.resource-image {
+    display: block;
+    width: 90px;
+    height: 90px;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    object-fit: contain;
+}
+
+.resource-details {
+    width: 100%;
+    text-align: center;
+}
+
+.resource-details h3 {
+    color: var(--heading);
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.resource-details p {
+    margin-top: 5px;
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.resource-item .pill-button {
+    align-self: center;
+    margin-top: auto;
+    min-width: 110px;
+}
+
+/* =========================================
+   13. ПРО ВЧИТЕЛЯ — ЗАГОЛОВОК
+========================================= */
+
+.about-page {
+    margin-top: 38px;
+}
+
+.about-heading {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.about-heading h1 {
+    color: var(--heading);
+    font-size: clamp(30px, 4vw, 40px);
+    font-weight: 700;
+    line-height: 1.3;
+    text-align: center;
+}
+
+/* =========================================
+   14. ПРО ВЧИТЕЛЯ — ФОТО І БІОГРАФІЯ
+========================================= */
+
+.about-profile {
+    display: grid;
+    grid-template-columns: minmax(250px, 0.82fr) minmax(0, 1.6fr);
+    gap: 24px;
+    align-items: stretch;
+}
+
+.about-photo-panel,
+.about-bio,
+.about-certificate-card {
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    background: white;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.about-photo-panel:hover,
+.about-bio:hover,
+.about-certificate-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+.about-photo-panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.about-photo-frame {
+    overflow: hidden;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    border-radius: 16px;
+    background: #eaf3ff;
+}
+
+.about-teacher-photo {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+}
+
+.about-bio {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(25px, 4vw, 45px);
+}
+
+.about-bio h2 {
+    margin-bottom: 20px;
+    color: var(--heading);
+    font-size: clamp(25px, 3vw, 34px);
+    line-height: 1.3;
+}
+
+.about-bio p {
+    color: var(--muted);
+    font-size: 17px;
+    line-height: 1.85;
+}
+
+.about-bio p + p {
+    margin-top: 16px;
+}
+
+/* =========================================
+   15. ПРО ВЧИТЕЛЯ — ДОСЯГНЕННЯ
+========================================= */
+
+.about-certificate-section {
+    margin-top: 72px;
+}
+
+.about-achievements-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+}
+
+.about-certificate-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: 28px;
+    align-items: center;
+    padding: 30px;
+}
+
+.about-certificate-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 240px;
+    padding: 18px;
+    border-radius: 16px;
+    background: #f0f6ff;
+}
+
+.about-certificate-image {
+    display: block;
+    max-width: 100%;
+    max-height: 410px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.about-certificate-label {
+    display: inline-block;
+    margin-bottom: 12px;
+    padding: 7px 12px;
+    border-radius: 30px;
+    background: #e0f2fe;
+    color: #1555a5;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.about-certificate-copy h3 {
+    color: var(--heading);
+    font-size: clamp(23px, 2.6vw, 30px);
+    line-height: 1.3;
+}
+
+.about-certificate-copy p {
+    margin-top: 13px;
+    color: var(--muted);
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+/* =========================================
+   16. СТОРІНКИ КЛАСІВ — ВСТУП
+========================================= */
+
+.class-intro {
+    padding: 45px 35px;
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    background: white;
+    box-shadow: var(--shadow);
+    text-align: center;
+}
+
+.class-intro-badge {
+    display: inline-block;
+    padding: 7px 15px;
+    border-radius: 30px;
+    background: #e0f2fe;
+    color: #1555a5;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+}
+
+.class-intro h1 {
+    margin-top: 12px;
+    color: var(--heading);
+    font-size: clamp(36px, 5vw, 50px);
+    line-height: 1.25;
+}
+
+.class-intro p {
+    max-width: 950px;
+    margin: 20px auto 0;
+    color: #1e293b;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 21px;
+    font-weight: 500;
+    line-height: 1.8;
+    text-align: center;
+}
+
+/* =========================================
+   17. КЛАСИ — НАВЧАЛЬНІ МАТЕРІАЛИ
+========================================= */
+
+.class-materials {
+    margin-top: 65px;
+}
+
+.class-resources-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.class-resource-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    min-height: 390px;
+    padding: 25px;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    background: white;
+    box-shadow: var(--shadow);
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.class-resource-card:hover {
+    transform: translateY(-5px);
+    border-color: #93c5fd;
+    box-shadow: var(--shadow-hover);
+}
+
+/* Логотипи без сірих прямокутників */
+
+.class-resource-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 170px;
+    padding: 0;
+    border-radius: 15px;
+    background: transparent;
+}
+
+/* Трохи збільшені логотипи */
+
+.class-resource-visual img {
+    display: block;
+    width: 150px;
+    height: 150px;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    background: transparent;
+}
+
+.class-resource-card h3 {
+    color: var(--heading);
+    font-size: 23px;
+    line-height: 1.35;
+}
+
+.class-resource-card p {
+    flex: 1;
+    color: #263445;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.75;
+}
+
+.class-resource-card .pill-button {
+    margin-top: auto;
+}
+
+/* =========================================
+   18. КЛАСИ — РОЗКЛАД УРОКІВ
+========================================= */
+
+.class-schedule-section {
+    margin-top: 70px;
+    padding: 35px;
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    background: white;
+    box-shadow: var(--shadow);
+}
+
+.class-schedule-note {
+    margin-bottom: 22px;
+    color: #263445;
+    font-size: 18px;
+    line-height: 1.7;
+    text-align: center;
+}
+
+.class-schedule-table-wrap {
+    overflow-x: auto;
+    border-radius: 12px;
+}
+
+.class-schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 18px;
+}
+
+.class-schedule-table th,
+.class-schedule-table td {
+    padding: 15px;
+    border: 1px solid #dce6f4;
+    text-align: center;
+}
+
+.class-schedule-table th {
+    background: #e8f1ff;
+    color: var(--heading);
+    font-weight: 700;
+}
+
+.class-schedule-table tbody tr:nth-child(even) {
+    background: #f8fbff;
+}
+
+.class-schedule-table tbody tr:hover {
+    background: #edf5ff;
+}
+
+/* =========================================
+   19. НИЖНІЙ ПІДВАЛ БЕЗ ВЕРХНЬОЇ ЛІНІЇ
+========================================= */
+
+.site-footer {
+    width: 100%;
+    margin-top: 0;
+    background: transparent;
+    color: #ffffff;
+}
+
+.footer-bar {
+    width: 100%;
+    background: var(--gradient);
+    border: none;
+}
+
+.footer-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 28px;
+    width: min(1200px, 100%);
+    margin: 0 auto;
+    padding: 16px 20px;
+}
+
+.footer-item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: #ffffff;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.3;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+a.footer-item:hover {
+    color: #ffffff;
+    opacity: 0.85;
+    transform: translateY(-2px);
+    text-decoration: underline;
+}
+
+a.footer-item:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 4px;
+    border-radius: 4px;
+}
+
+.footer-item svg {
+    display: block;
+    flex-shrink: 0;
+    color: #ffffff;
+}
+
+/* =========================================
+   20. АДАПТИВНІСТЬ — 1100 PX
+========================================= */
+
+@media (max-width: 1100px) {
+    .welcome-layout {
+        grid-template-columns: 1.2fr 1fr;
+    }
+
+    .welcome-main {
+        padding: 35px;
+    }
+
+    .quick-card {
+        padding: 17px;
+    }
+}
+
+/* =========================================
+   21. АДАПТИВНІСТЬ — 950 PX
+========================================= */
+
+@media (max-width: 950px) {
+    .site-menu {
+        gap: 5px;
+    }
+
+    .site-menu > li > a,
+    .site-menu > li > .dropdown-toggle {
+        padding: 11px 13px;
+        font-size: 17px;
+    }
+
+    .welcome-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .welcome-side {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-rows: auto;
+    }
+
+    .quick-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .quick-arrow {
+        display: none;
+    }
+
+    .courses-grid,
+    .resources-grid,
+    .class-resources-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* =========================================
+   22. АДАПТИВНІСТЬ — 800 PX
+========================================= */
+
+@media (max-width: 800px) {
+    .about-profile {
+        grid-template-columns: 1fr;
+    }
+
+    .about-photo-panel {
+        width: 100%;
+        max-width: 480px;
+        margin-inline: auto;
+    }
+
+    .about-certificate-card {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =========================================
+   23. МОБІЛЬНЕ МЕНЮ ПРАКТИКИ
+========================================= */
+
+@media (max-width: 768px) {
+    .practice-dropdown > .submenu {
+        min-width: 0;
+        width: min(330px, 92vw);
+    }
+
+    .practice-subtoggle {
+        white-space: normal;
+        font-size: 16px;
+    }
+
+    .practice-submenu {
+        position: static;
+        top: auto;
+        left: auto;
+        min-width: 0;
+        width: 100%;
+        margin: 8px 0 0;
+        padding-left: 12px;
+        background: var(--dropdown-color);
+        box-shadow: none;
+    }
+
+    .practice-submenu li a {
+        font-size: 16px;
+        white-space: normal;
+    }
+}
+
+/* =========================================
+   24. АДАПТИВНІСТЬ — ТЕЛЕФОНИ
+========================================= */
+
+@media (max-width: 650px) {
+    .page-container {
+        width: 94%;
+        margin-top: 20px;
+    }
+
+    .content-section {
+        margin-top: 48px;
+    }
+
+    .section-header h2 {
+        font-size: 27px;
+    }
+
+    .site-menu {
+        gap: 3px;
+        padding: 5px;
+    }
+
+    .site-menu > li > a,
+    .site-menu > li > .dropdown-toggle {
+        margin: 2px 0;
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .submenu {
+        min-width: 170px;
+    }
+
+    .submenu a {
+        font-size: 15px;
+    }
+
+    .practice-subtoggle,
+    .practice-submenu li a {
+        font-size: 15px;
+    }
+
+    .welcome-main {
+        min-height: 330px;
+        padding: 30px 25px;
+    }
+
+    .welcome-main h1 {
+        font-size: 35px;
+    }
+
+    .welcome-main p {
+        font-size: 15px;
+        text-align: left;
+    }
+
+    .welcome-side {
+        grid-template-columns: 1fr;
+    }
+
+    .quick-card {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .quick-arrow {
+        display: block;
+    }
+
+    .activities-grid,
+    .courses-grid,
+    .resources-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .activity-card {
+        min-height: 430px;
+        padding: 24px;
+    }
+
+    .activity-image {
+        height: 160px;
+    }
+
+    .activity-content h3 {
+        font-size: 24px;
+    }
+
+    .activity-content p {
+        font-size: 16px;
+        line-height: 1.75;
+    }
+
+    .resource-item {
+        min-height: 220px;
+    }
+
+    .about-heading {
+        margin-bottom: 22px;
+    }
+
+    .about-heading h1 {
+        font-size: 30px;
+    }
+
+    .about-profile {
+        gap: 18px;
+    }
+
+    .about-bio {
+        padding: 25px;
+    }
+
+    .about-bio p {
+        font-size: 16px;
+    }
+
+    .about-certificate-section {
+        margin-top: 48px;
+    }
+
+    .about-achievements-grid {
+        gap: 18px;
+    }
+
+    .about-certificate-card {
+        padding: 18px;
+        gap: 22px;
+    }
+
+    .about-certificate-visual {
+        min-height: 170px;
+        padding: 12px;
+    }
+
+    .about-certificate-copy p {
+        font-size: 16px;
+    }
+
+    .class-intro {
+        padding: 30px 20px;
+    }
+
+    .class-intro h1 {
+        font-size: 36px;
+    }
+
+    .class-intro p {
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 1.7;
+    }
+
+    .class-materials {
+        margin-top: 45px;
+    }
+
+    .class-resources-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .class-resource-card {
+        min-height: 360px;
+        padding: 22px;
+    }
+
+    .class-resource-card h3 {
+        font-size: 22px;
+    }
+
+    .class-resource-card p {
+        font-size: 17px;
+    }
+
+    .class-schedule-section {
+        margin-top: 45px;
+        padding: 20px 12px;
+    }
+
+    .class-schedule-note {
+        font-size: 16px;
+    }
+
+    .class-schedule-table {
+        font-size: 14px;
+    }
+
+    .class-schedule-table th,
+    .class-schedule-table td {
+        padding: 10px 6px;
+    }
+
+    .footer-inner {
+        flex-direction: column;
+        gap: 16px;
+        padding: 18px 14px;
+        text-align: center;
+    }
+
+    .footer-item {
+        font-size: 15px;
+    }
+
+    .footer-item svg {
+        width: 19px;
+        height: 19px;
+    }
+}
+
+/* =========================================
+   25. ДОСТУПНІСТЬ
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .site-menu > li > a,
+    .site-menu > li > .dropdown-toggle,
+    .quick-card,
+    .welcome-main,
+    .activity-card,
+    .course-card,
+    .resource-item,
+    .pill-button,
+    .about-photo-panel,
+    .about-bio,
+    .about-certificate-card,
+    .class-resource-card,
+    .footer-item {
+        transition: none;
+    }
+}
+
+/* =========================================
+   26. КНОПКА "НАГОРУ"
+========================================= */
+
+.back-to-top {
+    position: fixed;
+    right: 30px;
+
+    /* Піднято вище */
+    bottom: 70px;
+
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: var(--gradient);
+    color: #ffffff;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 5px 18px rgba(18, 59, 138, 0.25);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(15px);
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.back-to-top.show:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 22px rgba(18, 59, 138, 0.35);
+}
+
+.back-to-top:focus-visible {
+    outline: 3px solid #93c5fd;
+    outline-offset: 4px;
+}
+
+/* Кнопка на телефонах */
+
+@media (max-width: 650px) {
+    .back-to-top {
+        right: 18px;
+        bottom: 65px;
+        width: 45px;
+        height: 45px;
+        font-size: 25px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .back-to-top {
+        transition: none;
+    }
+}

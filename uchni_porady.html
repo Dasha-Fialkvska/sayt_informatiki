@@ -1,0 +1,897 @@
+
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Корисні поради для успішного навчання, вивчення інформатики та розвитку цифрових навичок.">
+    <title>Поради для навчання — Сайт учителя інформатики</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        html {
+            scrollbar-gutter: stable;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        main.page-container {
+            flex: 1;
+        }
+
+        /* ===== СТОРІНКА ПОРАД ===== */
+
+        .tips-page {
+            padding-bottom: 55px;
+        }
+
+        .tips-section {
+            margin-top: 55px;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .tips-card {
+            display: flex;
+            flex-direction: column;
+            padding: 28px 25px;
+            background: #fff;
+            border: 1px solid #e2eaf6;
+            border-radius: 20px;
+            box-shadow: 0 8px 28px rgba(28, 69, 130, .07);
+            transition: transform .2s ease,
+                        box-shadow .2s ease,
+                        border-color .2s ease;
+        }
+
+        .tips-card:hover {
+            transform: translateY(-4px);
+            border-color: #93c5fd;
+            box-shadow: 0 15px 32px rgba(28, 69, 130, .13);
+        }
+
+        .tips-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 68px;
+            height: 68px;
+            margin: 0 auto 20px;
+            border-radius: 18px;
+            background: #eaf3ff;
+            font-size: 34px;
+        }
+
+        .tips-card h3 {
+            margin: 0 0 18px;
+            color: #102f56;
+            font-size: 22px;
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        .tips-list {
+            margin: 0;
+            padding-left: 22px;
+            color: #263445;
+            font-size: 17px;
+            line-height: 1.8;
+        }
+
+        .tips-list li {
+            margin-bottom: 12px;
+            padding-left: 3px;
+        }
+
+        .tips-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        .tips-list li::marker {
+            color: #2563eb;
+        }
+
+        /* ===== КОРИСНІ ЗВИЧКИ ===== */
+
+        .tips-habits {
+            margin-top: 50px;
+            padding: 35px;
+            background: #fff;
+            border: 1px solid #e2eaf6;
+            border-radius: 22px;
+            box-shadow: 0 8px 28px rgba(28, 69, 130, .07);
+        }
+
+        .tips-habits h2 {
+            margin: 0 0 25px;
+            color: #102f56;
+            font-size: 28px;
+            text-align: center;
+        }
+
+        .habits-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .habit-item {
+            padding: 22px 16px;
+            border: 1px solid #dbeafe;
+            border-radius: 16px;
+            background: #f0f6ff;
+            text-align: center;
+        }
+
+        .habit-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            margin: 0 auto 13px;
+            border-radius: 50%;
+            background: #2563eb;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        .habit-item h3 {
+            margin: 0 0 9px;
+            color: #123b8a;
+            font-size: 19px;
+        }
+
+        .habit-item p {
+            margin: 0;
+            color: #263445;
+            font-size: 16px;
+            line-height: 1.65;
+        }
+
+        /* ===== МОТИВАЦІЙНИЙ БЛОК ===== */
+
+        .tips-message {
+            margin-top: 40px;
+            padding: 32px;
+            border: 1px solid #bfdbfe;
+            border-radius: 20px;
+            background: #f0f6ff;
+            text-align: center;
+        }
+
+        .tips-message h2 {
+            margin: 0 0 15px;
+            color: #123b8a;
+            font-size: 26px;
+        }
+
+        .tips-message p {
+            max-width: 850px;
+            margin: 0 auto;
+            color: #263445;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        /* ===== АДАПТИВНІСТЬ ===== */
+
+        @media (max-width: 1000px) {
+            .tips-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .habits-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 650px) {
+            .tips-section {
+                margin-top: 40px;
+            }
+
+            .tips-grid {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+
+            .tips-card {
+                padding: 24px 20px;
+            }
+
+            .tips-card h3 {
+                font-size: 21px;
+            }
+
+            .tips-list {
+                font-size: 16px;
+            }
+
+            .tips-habits {
+                margin-top: 35px;
+                padding: 24px 18px;
+            }
+
+            .tips-habits h2 {
+                font-size: 24px;
+            }
+
+            .habits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tips-message {
+                padding: 25px 18px;
+            }
+
+            .tips-message h2 {
+                font-size: 23px;
+            }
+
+            .tips-message p {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body id="top">
+
+    <!-- =====================================
+         ГОЛОВНЕ МЕНЮ
+    ====================================== -->
+
+    <header class="site-header">
+        <nav class="site-nav" aria-label="Основне меню">
+            <ul class="site-menu">
+
+                <li>
+                    <a href="index.html">Головна</a>
+                </li>
+
+                <li>
+                    <a href="about.html">Про вчителя</a>
+                </li>
+
+                <!-- КЛАСИ -->
+                <li class="dropdown">
+                    <button
+                        class="dropdown-toggle"
+                        type="button"
+                        aria-expanded="false"
+                        aria-controls="learning-menu"
+                    >
+                        Класи ▾
+                    </button>
+
+                    <ul class="submenu" id="learning-menu">
+                        <li><a href="class5.html">5 клас</a></li>
+                        <li><a href="class6.html">6 клас</a></li>
+                        <li><a href="class7.html">7 клас</a></li>
+                        <li><a href="class8.html">8 клас</a></li>
+                        <li><a href="class9.html">9 клас</a></li>
+                    </ul>
+                </li>
+
+                <!-- УЧНЯМ -->
+                <li class="dropdown">
+                    <button
+                        class="dropdown-toggle"
+                        type="button"
+                        aria-expanded="false"
+                        aria-controls="students-menu"
+                    >
+                        Учням ▾
+                    </button>
+
+                    <ul class="submenu" id="students-menu">
+                        <li>
+                            <a href="uchni_rozklad.html">
+                                Розклад уроків
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="uchni_bezpeka.html">
+                                Правила безпеки
+                            </a>
+                        </li>
+
+                        <li>
+                            <a
+                                href="uchni_porady.html"
+                                aria-current="page"
+                            >
+                                Поради для навчання
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="galereya.html">Галерея</a>
+                </li>
+
+                <!-- ПЕДАГОГІЧНА ПРАКТИКА -->
+                <li class="dropdown practice-dropdown">
+                    <button
+                        class="dropdown-toggle"
+                        type="button"
+                        aria-expanded="false"
+                        aria-controls="practice-menu"
+                    >
+                        Педагогічна практика ▾
+                    </button>
+
+                    <ul class="submenu" id="practice-menu">
+
+                        <!-- ПРАКТИКА В ЗЗСО -->
+                        <li class="practice-subdropdown">
+                            <button
+                                class="practice-subtoggle"
+                                type="button"
+                                aria-expanded="false"
+                                aria-controls="practice-zzso-menu"
+                            >
+                                <span>
+                                    Педагогічна практика в ЗЗСО
+                                </span>
+
+                                <span
+                                    class="practice-arrow"
+                                    aria-hidden="true"
+                                >
+                                    ▸
+                                </span>
+                            </button>
+
+                            <ul
+                                class="practice-submenu"
+                                id="practice-zzso-menu"
+                            >
+                                <li>
+                                    <a href="praktika_zzso_info.html">
+                                        Загальна інформація
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="praktika_zzso_uroky.html">
+                                        Плани-конспекти уроків
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="praktika_zzso_kalendar.html">
+                                        Календарні планування
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <!-- ПРАКТИКА В ЗПО -->
+                        <li>
+                            <a href="praktika_zpo.html">
+                                Педагогічна практика в ЗПО
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="kontakty.html">Контакти</a>
+                </li>
+
+            </ul>
+        </nav>
+    </header>
+
+    <!-- =====================================
+         ОСНОВНИЙ ВМІСТ
+    ====================================== -->
+
+    <main class="page-container tips-page">
+
+        <!-- ВСТУП -->
+        <section class="class-intro">
+            <h1>Поради для навчання</h1>
+
+            <p>
+                Успішне навчання починається з цікавості,
+                наполегливості та правильної організації часу.
+                Скористайтеся корисними порадами, які допоможуть
+                легше засвоювати нові знання, виконувати завдання
+                та розвивати цифрові навички.
+            </p>
+        </section>
+
+        <!-- КОРИСНІ ПОРАДИ -->
+        <section class="tips-section">
+            <div class="section-header centered">
+                <h2>Корисні поради для учнів</h2>
+            </div>
+
+            <div class="tips-grid">
+
+                <!-- КАРТКА 1 -->
+                <article class="tips-card">
+                    <div class="tips-icon" aria-hidden="true">📅</div>
+                    <h3>Плануй свій час</h3>
+
+                    <ul class="tips-list">
+                        <li>Складай план навчання на день або тиждень.</li>
+                        <li>Починай із найважливіших завдань.</li>
+                        <li>Не залишай домашню роботу на останній момент.</li>
+                        <li>Чергуй навчання з відпочинком.</li>
+                        <li>Використовуй календар або список справ.</li>
+                    </ul>
+                </article>
+
+                <!-- КАРТКА 2 -->
+                <article class="tips-card">
+                    <div class="tips-icon" aria-hidden="true">📚</div>
+                    <h3>Навчайся регулярно</h3>
+
+                    <ul class="tips-list">
+                        <li>Повторюй матеріал після уроків.</li>
+                        <li>
+                            Намагайся зрозуміти тему,
+                            а не просто запам'ятати її.
+                        </li>
+                        <li>Записуй важливі поняття та приклади.</li>
+                        <li>Став запитання, якщо щось незрозуміло.</li>
+                        <li>
+                            Перевіряй свої знання за допомогою тестів.
+                        </li>
+                    </ul>
+                </article>
+
+                <!-- КАРТКА 3 -->
+                <article class="tips-card">
+                    <div class="tips-icon" aria-hidden="true">💻</div>
+                    <h3>Розвивай цифрові навички</h3>
+
+                    <ul class="tips-list">
+                        <li>
+                            Практикуйся працювати з різними програмами.
+                        </li>
+                        <li>
+                            Вивчай можливості текстових редакторів
+                            і презентацій.
+                        </li>
+                        <li>
+                            Навчайся швидко та правильно вводити текст.
+                        </li>
+                        <li>Створюй власні цифрові проєкти.</li>
+                        <li>
+                            Дотримуйся правил безпечної роботи
+                            в інтернеті.
+                        </li>
+                    </ul>
+                </article>
+
+                <!-- КАРТКА 4 -->
+                <article class="tips-card">
+                    <div class="tips-icon" aria-hidden="true">🧩</div>
+                    <h3>Розвивай логічне мислення</h3>
+
+                    <ul class="tips-list">
+                        <li>
+                            Розв'язуй логічні задачі та головоломки.
+                        </li>
+                        <li>
+                            Вчися розділяти складне завдання
+                            на прості кроки.
+                        </li>
+                        <li>
+                            Шукай декілька способів розв'язання задачі.
+                        </li>
+                        <li>Перевіряй результати своєї роботи.</li>
+                        <li>Не бійся виправляти помилки.</li>
+                    </ul>
+                </article>
+
+                <!-- КАРТКА 5 -->
+                <article class="tips-card">
+                    <div class="tips-icon" aria-hidden="true">🔎</div>
+                    <h3>Правильно шукай інформацію</h3>
+
+                    <ul class="tips-list">
+                        <li>Формулюй чіткі пошукові запити.</li>
+                        <li>
+                            Перевіряй інформацію в декількох джерелах.
+                        </li>
+                        <li>
+                            Звертай увагу на автора та дату публікації.
+                        </li>
+                        <li>
+                            Не копіюй чужі роботи без зазначення джерела.
+                        </li>
+                        <li>
+                            Навчайся відрізняти факти
+                            від особистих думок.
+                        </li>
+                    </ul>
+                </article>
+
+                <!-- КАРТКА 6 -->
+                <article class="tips-card">
+                    <div class="tips-icon" aria-hidden="true">🤝</div>
+                    <h3>Співпрацюй та розвивайся</h3>
+
+                    <ul class="tips-list">
+                        <li>
+                            Бери участь у спільних навчальних проєктах.
+                        </li>
+                        <li>Поважай думки інших учнів.</li>
+                        <li>Ділися корисними знаннями.</li>
+                        <li>Навчайся пояснювати свої рішення.</li>
+                        <li>
+                            Приймай конструктивні поради
+                            та вдосконалюй свою роботу.
+                        </li>
+                    </ul>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- =====================================
+             ЧОТИРИ КОРИСНІ НАВЧАЛЬНІ ЗВИЧКИ
+        ====================================== -->
+
+        <section class="tips-habits">
+            <h2>Чотири корисні навчальні звички</h2>
+
+            <div class="habits-grid">
+
+                <article class="habit-item">
+                    <div class="habit-number">1</div>
+                    <h3>Постав мету</h3>
+                    <p>
+                        Визнач, чого хочеш навчитися сьогодні.
+                    </p>
+                </article>
+
+                <article class="habit-item">
+                    <div class="habit-number">2</div>
+                    <h3>Працюй уважно</h3>
+                    <p>
+                        Зосереджуйся на одному завданні за раз.
+                    </p>
+                </article>
+
+                <article class="habit-item">
+                    <div class="habit-number">3</div>
+                    <h3>Практикуйся</h3>
+                    <p>
+                        Закріплюй нові знання практичними вправами.
+                    </p>
+                </article>
+
+                <article class="habit-item">
+                    <div class="habit-number">4</div>
+                    <h3>Оціни результат</h3>
+                    <p>
+                        Перевір, що вдалося, а що потрібно повторити.
+                    </p>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- МОТИВАЦІЙНИЙ БЛОК -->
+        <section class="tips-message">
+            <h2>Пам'ятай: кожен крок має значення!</h2>
+
+            <p>
+                Не обов'язково знати все відразу.
+                Важливо бути допитливим, ставити запитання,
+                практикуватися та поступово вдосконалювати
+                свої вміння. Навіть невеликі щоденні
+                досягнення допомагають рухатися вперед.
+            </p>
+        </section>
+
+    </main>
+
+    <!-- =====================================
+         ПІДВАЛ САЙТУ
+    ====================================== -->
+
+    <footer class="site-footer">
+        <div class="footer-bar">
+            <div class="footer-inner">
+
+                <!-- EMAIL -->
+                <a
+                    class="footer-item"
+                    href="mailto:dahsa.fialkovska@gmail.com"
+                >
+                    <svg
+                        width="22" height="22"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                    >
+                        <rect x="2" y="4" width="20" height="16" rx="2"/>
+                        <path d="m22 7-10 6L2 7"/>
+                    </svg>
+                    <span>dahsa.fialkovska@gmail.com</span>
+                </a>
+
+                <!-- VIBER -->
+                <a
+                    class="footer-item"
+                    href="https://www.viber.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <svg
+                        width="22" height="22"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                    >
+                        <path
+                            d="M21 11.5a8.38 8.38 0 0 1-.9 3.8
+                               8.5 8.5 0 0 1-7.6 4.7
+                               8.38 8.38 0 0 1-3.8-.9
+                               L3 21l1.9-5.7
+                               a8.38 8.38 0 0 1-.9-3.8
+                               8.5 8.5 0 0 1 4.7-7.6
+                               8.38 8.38 0 0 1 3.8-.9h.5
+                               a8.48 8.48 0 0 1 8 8v.5z"
+                        />
+                    </svg>
+                    <span>Viber</span>
+                </a>
+
+                <!-- FACEBOOK -->
+                <a
+                    class="footer-item"
+                    href="https://www.facebook.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <svg
+                        width="22" height="22"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        aria-hidden="true"
+                    >
+                        <path
+                            d="M22 12a10 10 0 1 0-11.56 9.88v-6.99
+                               H7.9V12h2.54V9.8
+                               c0-2.5 1.49-3.89 3.77-3.89
+                               1.09 0 2.23.19 2.23.19v2.46
+                               h-1.26c-1.24 0-1.63.77-1.63 1.56V12
+                               h2.77l-.44 2.89h-2.33v6.99
+                               A10 10 0 0 0 22 12z"
+                        />
+                    </svg>
+                    <span>Facebook</span>
+                </a>
+
+                <!-- INSTAGRAM -->
+                <a
+                    class="footer-item"
+                    href="https://www.instagram.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <svg
+                        width="22" height="22"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                    >
+                        <rect x="2" y="2" width="20" height="20" rx="5"/>
+                        <circle cx="12" cy="12" r="4"/>
+                        <circle
+                            cx="17.5" cy="6.5" r="1"
+                            fill="currentColor"
+                            stroke="none"
+                        />
+                    </svg>
+                    <span>Instagram</span>
+                </a>
+
+                <!-- УКРАЇНА -->
+                <div class="footer-item">
+                    <svg
+                        width="22" height="22"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                    >
+                        <path
+                            d="M20 10c0 5-8 11-8 11
+                               S4 15 4 10a8 8 0 1 1 16 0z"
+                        />
+                        <circle cx="12" cy="10" r="2.5"/>
+                    </svg>
+                    <span>Україна</span>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+    <!-- =====================================
+         КНОПКА ПОВЕРНЕННЯ НАГОРУ
+    ====================================== -->
+
+    <button
+        id="backToTop"
+        class="back-to-top"
+        type="button"
+        aria-label="Повернутися нагору"
+        title="Повернутися нагору"
+    >
+        ↑
+    </button>
+
+    <!-- =====================================
+         JAVASCRIPT
+    ====================================== -->
+
+    <script>
+        const dropdowns = document.querySelectorAll(
+            ".site-menu > .dropdown"
+        );
+
+        const practiceSubdropdowns = document.querySelectorAll(
+            ".practice-subdropdown"
+        );
+
+        // Закриття вкладених меню
+        function closePracticeSubmenus() {
+            practiceSubdropdowns.forEach(item => {
+                item.classList.remove("subopen");
+
+                const button = item.querySelector(
+                    ":scope > .practice-subtoggle"
+                );
+
+                if (button) {
+                    button.setAttribute("aria-expanded", "false");
+                }
+            });
+        }
+
+        // Закриття всіх меню
+        function closeAllDropdowns() {
+            dropdowns.forEach(dropdown => {
+                dropdown.classList.remove("open");
+
+                const button = dropdown.querySelector(
+                    ":scope > .dropdown-toggle"
+                );
+
+                if (button) {
+                    button.setAttribute("aria-expanded", "false");
+                }
+            });
+
+            closePracticeSubmenus();
+        }
+
+        // Перший рівень меню
+        dropdowns.forEach(dropdown => {
+            const button = dropdown.querySelector(
+                ":scope > .dropdown-toggle"
+            );
+
+            if (!button) return;
+
+            button.addEventListener("click", event => {
+                event.stopPropagation();
+
+                const wasOpen = dropdown.classList.contains("open");
+
+                closeAllDropdowns();
+
+                if (!wasOpen) {
+                    dropdown.classList.add("open");
+                    button.setAttribute("aria-expanded", "true");
+                }
+            });
+        });
+
+        // Другий рівень меню
+        practiceSubdropdowns.forEach(item => {
+            const button = item.querySelector(
+                ":scope > .practice-subtoggle"
+            );
+
+            if (!button) return;
+
+            button.addEventListener("click", event => {
+                event.stopPropagation();
+
+                const wasOpen = item.classList.contains("subopen");
+
+                closePracticeSubmenus();
+
+                if (!wasOpen) {
+                    item.classList.add("subopen");
+                    button.setAttribute("aria-expanded", "true");
+                }
+            });
+        });
+
+        // Закриття при натисканні поза меню
+        document.addEventListener("click", event => {
+            if (!event.target.closest(".site-menu .dropdown")) {
+                closeAllDropdowns();
+            }
+        });
+
+        // Закриття клавішею Escape
+        document.addEventListener("keydown", event => {
+            if (event.key === "Escape") {
+                closeAllDropdowns();
+            }
+        });
+
+        // Кнопка повернення нагору
+        const backToTopButton = document.getElementById(
+            "backToTop"
+        );
+
+        function updateBackToTop() {
+            backToTopButton.classList.toggle(
+                "show",
+                window.scrollY > 300
+            );
+        }
+
+        window.addEventListener(
+            "scroll",
+            updateBackToTop,
+            { passive: true }
+        );
+
+        updateBackToTop();
+
+        backToTopButton.addEventListener("click", () => {
+            const reducedMotion = window.matchMedia(
+                "(prefers-reduced-motion: reduce)"
+            ).matches;
+
+            window.scrollTo({
+                top: 0,
+                behavior: reducedMotion ? "auto" : "smooth"
+            });
+        });
+    </script>
+
+</body>
+</html>

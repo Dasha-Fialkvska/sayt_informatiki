@@ -1,0 +1,1303 @@
+
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Сайт учителя інформатики</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Підвал залишається внизу сторінки */
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        main.page-container {
+            flex: 1;
+            width: min(1200px, 92%);
+            margin: 38px auto 80px;
+        }
+    </style>
+</head>
+
+<body id="top">
+
+    <!-- =====================================
+         ГОЛОВНЕ МЕНЮ
+    ====================================== -->
+
+    <header class="site-header">
+        <nav class="site-nav" aria-label="Основне меню">
+
+            <ul class="site-menu">
+
+                <!-- ГОЛОВНА -->
+
+                <li>
+                    <a href="index.html">Головна</a>
+                </li>
+
+                <!-- ПРО ВЧИТЕЛЯ -->
+
+                <li>
+                    <a href="about.html">Про вчителя</a>
+                </li>
+
+                <!-- КЛАСИ -->
+
+                <li class="dropdown">
+                    <button
+                        class="dropdown-toggle"
+                        type="button"
+                        aria-expanded="false"
+                        aria-controls="learning-menu"
+                    >
+                        Класи ▾
+                    </button>
+
+                    <ul class="submenu" id="learning-menu">
+                        <li>
+                            <a href="class5.html">5 клас</a>
+                        </li>
+
+                        <li>
+                            <a href="class6.html">6 клас</a>
+                        </li>
+
+                        <li>
+                            <a href="class7.html">7 клас</a>
+                        </li>
+
+                        <li>
+                            <a href="class8.html">8 клас</a>
+                        </li>
+
+                        <li>
+                            <a href="class9.html">9 клас</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <!-- УЧНЯМ -->
+
+                <li class="dropdown">
+                    <button
+                        class="dropdown-toggle"
+                        type="button"
+                        aria-expanded="false"
+                        aria-controls="students-menu"
+                    >
+                        Учням ▾
+                    </button>
+
+                    <ul class="submenu" id="students-menu">
+
+                        <li>
+                            <a href="uchni_rozklad.html">
+                                Розклад уроків
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="uchni_bezpeka.html">
+                                Правила безпеки
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="uchni_porady.html">
+                                Поради для навчання
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <!-- ГАЛЕРЕЯ -->
+
+                <li>
+                    <a href="galereya.html">Галерея</a>
+                </li>
+
+                <!-- ПЕДАГОГІЧНА ПРАКТИКА -->
+
+                <li class="dropdown practice-dropdown">
+                    <button
+                        class="dropdown-toggle"
+                        type="button"
+                        aria-expanded="false"
+                        aria-controls="practice-menu"
+                    >
+                        Педагогічна практика ▾
+                    </button>
+
+                    <ul class="submenu" id="practice-menu">
+
+                        <!-- ПРАКТИКА В ЗЗСО -->
+
+                        <li class="practice-subdropdown">
+                            <button
+                                class="practice-subtoggle"
+                                type="button"
+                                aria-expanded="false"
+                                aria-controls="practice-zzso-menu"
+                            >
+                                <span>
+                                    Педагогічна практика в ЗЗСО
+                                </span>
+
+                                <span
+                                    class="practice-arrow"
+                                    aria-hidden="true"
+                                >
+                                    ▸
+                                </span>
+                            </button>
+
+                            <ul
+                                class="practice-submenu"
+                                id="practice-zzso-menu"
+                            >
+
+                                <li>
+                                    <a href="praktika_zzso_info.html">
+                                        Загальна інформація
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="praktika_zzso_uroky.html">
+                                        Плани-конспекти уроків
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="praktika_zzso_kalendar.html">
+                                        Календарні планування
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+
+                        <!-- ПРАКТИКА В ЗПО -->
+
+                        <li>
+                            <a href="praktika_zpo.html">
+                                Педагогічна практика в ЗПО
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <!-- КОНТАКТИ -->
+
+                <li>
+                    <a href="kontakty.html">Контакти</a>
+                </li>
+
+            </ul>
+
+        </nav>
+    </header>
+
+    <!-- =====================================
+         ОСНОВНИЙ ВМІСТ
+    ====================================== -->
+
+    <main class="page-container">
+
+        <!-- =====================================
+             ПРО САЙТ
+        ====================================== -->
+
+        <section class="welcome-layout">
+
+            <div class="welcome-main">
+
+                <h1>Про сайт</h1>
+
+                <p>
+                    Цей сайт створений для учнів, батьків і вчителів,
+                    які прагнуть зробити навчання сучасним, цікавим
+                    і зручним. Тут зібрані навчальні матеріали,
+                    інтерактивні завдання, методичні рекомендації
+                    та корисні інтернет-ресурси.
+                </p>
+
+                <p>
+                    На сторінках сайту ви знайдете відеоуроки
+                    з інформатики, вправи для закріплення знань
+                    і посилання на освітні платформи, які допоможуть
+                    у навчанні та саморозвитку.
+                </p>
+
+                <div
+                    class="welcome-decoration decoration-one"
+                    aria-hidden="true"
+                ></div>
+
+                <div
+                    class="welcome-decoration decoration-two"
+                    aria-hidden="true"
+                ></div>
+
+            </div>
+
+            <!-- ШВИДКІ ПОСИЛАННЯ -->
+
+            <div class="welcome-side">
+
+                <!-- ПРАКТИКА ТА КОНКУРСИ -->
+
+                <a href="#activities" class="quick-card">
+
+                    <span class="quick-icon" aria-hidden="true">
+                        🧩
+                    </span>
+
+                    <span class="quick-copy">
+                        <strong>
+                            Практика та конкурси
+                        </strong>
+
+                        <small>
+                            Вправи й цікаві завдання
+                        </small>
+                    </span>
+
+                    <span class="quick-arrow" aria-hidden="true">
+                        ↗
+                    </span>
+
+                </a>
+
+                <!-- ВІДЕОУРОКИ -->
+
+                <a href="#courses" class="quick-card">
+
+                    <span class="quick-icon" aria-hidden="true">
+                        🎬
+                    </span>
+
+                    <span class="quick-copy">
+                        <strong>Відеоуроки</strong>
+
+                        <small>
+                            Уроки для 5–9 класів
+                        </small>
+                    </span>
+
+                    <span class="quick-arrow" aria-hidden="true">
+                        ↗
+                    </span>
+
+                </a>
+
+                <!-- ОСВІТНІ ПЛАТФОРМИ -->
+
+                <a href="#resources" class="quick-card">
+
+                    <span class="quick-icon" aria-hidden="true">
+                        🌐
+                    </span>
+
+                    <span class="quick-copy">
+                        <strong>
+                            Освітні платформи
+                        </strong>
+
+                        <small>
+                            Корисні онлайн-ресурси
+                        </small>
+                    </span>
+
+                    <span class="quick-arrow" aria-hidden="true">
+                        ↗
+                    </span>
+
+                </a>
+
+            </div>
+
+        </section>
+
+        <!-- =====================================
+             НАВЧАЙСЯ ІЗ ЗАДОВОЛЕННЯМ
+        ====================================== -->
+
+        <section
+            class="content-section"
+            id="activities"
+        >
+
+            <div class="section-header centered">
+                <h2>Навчайся із задоволенням</h2>
+            </div>
+
+            <div class="activities-grid">
+
+                <!-- КОНКУРС З ІНФОРМАТИКИ -->
+
+                <article class="activity-card">
+
+                    <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHzK3PI5DS3Dc92qLFFBimpo4cgB3UY-KCJ3O0nfqWwNgCpXpUjIlYY3J_&s=10"
+                        alt=""
+                        class="activity-image"
+                    >
+
+                    <div class="activity-content">
+
+                        <h3>
+                            Конкурс з інформатики
+                        </h3>
+
+                        <p>
+                            Перевір свої знання та спробуй сили
+                            в конкурсі «Брейн Ринг».
+                            Актуальні умови участі доступні
+                            на сайті організаторів.
+                        </p>
+
+                    </div>
+
+                    <a
+                        class="pill-button"
+                        href="https://www.brainring.com.ua/ua/konkurs-z-informatiki/novyny-konkursu"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Перейти
+                    </a>
+
+                </article>
+
+                <!-- ІНТЕРАКТИВНІ ВПРАВИ -->
+
+                <article class="activity-card">
+
+                    <img
+                        src="https://thumbs.dreamstime.com/b/interactive-touch-screen-interface-icon-vector-solid-logo-illustration-pictogram-isolated-white-92858403.jpg"
+                        alt=""
+                        class="activity-image"
+                    >
+
+                    <div class="activity-content">
+
+                        <h3>
+                            Інтерактивні вправи
+                        </h3>
+
+                        <p>
+                            Тренуй логічне мислення,
+                            закріплюй знання та виконуй цікаві
+                            завдання з інформатики
+                            в інтерактивному форматі.
+                        </p>
+
+                    </div>
+
+                    <a
+                        class="pill-button"
+                        href="https://wordwall.net/uk-ua/community/%D1%96%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%82%D0%B8%D0%BA%D0%B0"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Перейти
+                    </a>
+
+                </article>
+
+                <!-- ТЕСТИ З ІНФОРМАТИКИ -->
+
+                <article class="activity-card">
+
+                    <img
+                        src="https://cdn-icons-png.flaticon.com/512/10178/10178610.png"
+                        alt=""
+                        class="activity-image"
+                    >
+
+                    <div class="activity-content">
+
+                        <h3>
+                            Тести з інформатики
+                        </h3>
+
+                        <p>
+                            Перевір свої знання з інформатики
+                            за допомогою цікавих онлайн-тестів
+                            та підготуйся до контрольних робіт.
+                        </p>
+
+                    </div>
+
+                    <a
+                        class="pill-button"
+                        href="https://testinform.in.ua/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Перейти
+                    </a>
+
+                </article>
+
+                <!-- ЛОГІЧНІ ЗАВДАННЯ -->
+
+                <article class="activity-card">
+
+                    <img
+                        src="https://cdn-icons-png.flaticon.com/512/8554/8554377.png"
+                        alt=""
+                        class="activity-image"
+                    >
+
+                    <div class="activity-content">
+
+                        <h3>
+                            Логічні завдання
+                        </h3>
+
+                        <p>
+                            Розвивай логічне та алгоритмічне мислення,
+                            тренуй уважність і знаходь нестандартні
+                            рішення цікавих завдань.
+                        </p>
+
+                    </div>
+
+                    <a
+                        class="pill-button"
+                        href="https://learningapps.org/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Перейти
+                    </a>
+
+                </article>
+
+            </div>
+
+        </section>
+
+        <!-- =====================================
+             ВІДЕОКУРСИ З ІНФОРМАТИКИ
+        ====================================== -->
+
+        <section
+            class="content-section"
+            id="courses"
+        >
+
+            <div class="section-header centered">
+                <h2>Відеокурси з інформатики</h2>
+            </div>
+
+            <div class="courses-grid">
+
+                <!-- 5 КЛАС -->
+
+                <article class="course-card">
+
+                    <div class="course-visual">
+                        <span class="course-badge">
+                            ВІДЕОКУРС
+                        </span>
+
+                        <span class="course-big-number">
+                            05
+                        </span>
+
+                        <span class="course-play" aria-hidden="true">
+                            ▶
+                        </span>
+                    </div>
+
+                    <div class="course-info">
+
+                        <h3>
+                            Інформатика — 5 клас
+                        </h3>
+
+                        <p>Ривкінд · 2022 рік</p>
+
+                        <a
+                            class="pill-button"
+                            href="https://www.youtube.com/playlist?list=PLafE3aTB6JO2KoqMF8lynRa24tw7Pq7aF"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Перейти
+                        </a>
+
+                    </div>
+
+                </article>
+
+                <!-- 6 КЛАС -->
+
+                <article class="course-card">
+
+                    <div class="course-visual">
+                        <span class="course-badge">
+                            ВІДЕОКУРС
+                        </span>
+
+                        <span class="course-big-number">
+                            06
+                        </span>
+
+                        <span class="course-play" aria-hidden="true">
+                            ▶
+                        </span>
+                    </div>
+
+                    <div class="course-info">
+
+                        <h3>
+                            Інформатика — 6 клас
+                        </h3>
+
+                        <p>Ривкінд · 2023 рік</p>
+
+                        <a
+                            class="pill-button"
+                            href="https://www.youtube.com/playlist?list=PLafE3aTB6JO1KBF4yxEQHB1RVdpRdU-YE"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Перейти
+                        </a>
+
+                    </div>
+
+                </article>
+
+                <!-- 7 КЛАС -->
+
+                <article class="course-card">
+
+                    <div class="course-visual">
+                        <span class="course-badge">
+                            ВІДЕОКУРС
+                        </span>
+
+                        <span class="course-big-number">
+                            07
+                        </span>
+
+                        <span class="course-play" aria-hidden="true">
+                            ▶
+                        </span>
+                    </div>
+
+                    <div class="course-info">
+
+                        <h3>
+                            Інформатика — 7 клас
+                        </h3>
+
+                        <p>Ривкінд · 2024 рік</p>
+
+                        <a
+                            class="pill-button"
+                            href="https://www.youtube.com/playlist?list=PLafE3aTB6JO0w48fX4pDXeNTYvhQxgTKw"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Перейти
+                        </a>
+
+                    </div>
+
+                </article>
+
+                <!-- 8 КЛАС -->
+
+                <article class="course-card">
+
+                    <div class="course-visual">
+                        <span class="course-badge">
+                            ВІДЕОКУРС
+                        </span>
+
+                        <span class="course-big-number">
+                            08
+                        </span>
+
+                        <span class="course-play" aria-hidden="true">
+                            ▶
+                        </span>
+                    </div>
+
+                    <div class="course-info">
+
+                        <h3>
+                            Інформатика — 8 клас
+                        </h3>
+
+                        <p>Ривкінд · 2025 рік</p>
+
+                        <a
+                            class="pill-button"
+                            href="https://www.youtube.com/playlist?list=PLafE3aTB6JO0vmK0qstXM0czu-0BFzQ51"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Перейти
+                        </a>
+
+                    </div>
+
+                </article>
+
+                <!-- 9 КЛАС -->
+
+                <article class="course-card">
+
+                    <div class="course-visual">
+                        <span class="course-badge">
+                            ВІДЕОКУРС
+                        </span>
+
+                        <span class="course-big-number">
+                            09
+                        </span>
+
+                        <span class="course-play" aria-hidden="true">
+                            ▶
+                        </span>
+                    </div>
+
+                    <div class="course-info">
+
+                        <h3>
+                            Інформатика — 9 клас
+                        </h3>
+
+                        <p>Ривкінд · 2022 рік</p>
+
+                        <a
+                            class="pill-button"
+                            href="https://www.youtube.com/playlist?list=PLafE3aTB6JO30U_24gh9z8gkqGNRatUHn"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Перейти
+                        </a>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+        <!-- =====================================
+             КОРИСНІ ОСВІТНІ ПЛАТФОРМИ
+        ====================================== -->
+
+        <section
+            class="content-section"
+            id="resources"
+        >
+
+            <div class="section-header centered">
+                <h2>Корисні освітні платформи</h2>
+            </div>
+
+            <div class="resources-grid">
+
+                <!-- НА УРОК -->
+
+                <article class="resource-item">
+
+                    <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDNqp0LdINIufZdyqaWxY-vTpcb3I8B94UwfgWw1q-yw&s"
+                        alt="На Урок"
+                        class="resource-image"
+                    >
+
+                    <div class="resource-details">
+                        <h3>На Урок</h3>
+                        <p>Тести та матеріали</p>
+                    </div>
+
+                    <a
+                        class="pill-button"
+                        href="https://naurok.com.ua"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Перейти
+                    </a>
+
+                </article>
+
+                <!-- ВСЕОСВІТА -->
+
+                <article class="resource-item">
+
+                    <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpMASHCw0I7WoRgpdBSfVCHDY-rRYn_1-pzMxbnFO84g&s"
+                        alt="Всеосвіта"
+                        class="resource-image"
+                    >
+
+                    <div class="resource-details">
+                        <h3>Всеосвіта</h3>
+                        <p>Освітня платформа</p>
+                    </div>
+
+                    <a
+                        class="pill-button"
+                        href="https://vseosvita.ua/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Перейти
+                    </a>
+
+                </article>
+
+                <!-- ОСВІТА UA -->
+
+                <article class="resource-item">
+
+                    <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbPhXjomn76PedRv0KDylpYu_ObdWodMeRLY8g-dKk2A&s=10"
+                        alt="Освіта UA"
+                        class="resource-image"
+                    >
+
+                    <div class="resource-details">
+                        <h3>Освіта UA</h3>
+                        <p>Довідники та підручники</p>
+                    </div>
+
+                    <a
+                        class="pill-button"
+                        href="https://osvita.ua"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Перейти
+                    </a>
+
+                </article>
+
+                <!-- ВІКІПЕДІЯ -->
+
+                <article class="resource-item">
+
+                    <img
+                        src="https://thumb.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/1280px-Wikipedia-logo-v2.svg.png?utm_source=ru.wikipedia.org&utm_campaign=index&utm_content=thumbnail"
+                        alt="Вікіпедія"
+                        class="resource-image"
+                    >
+
+                    <div class="resource-details">
+                        <h3>Вікіпедія</h3>
+                        <p>Онлайн-енциклопедія</p>
+                    </div>
+
+                    <a
+                        class="pill-button"
+                        href="https://uk.wikipedia.org"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Перейти
+                    </a>
+
+                </article>
+
+                <!-- DUOLINGO -->
+
+                <article class="resource-item">
+
+                    <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNLUDbRIQIC2sqWZ9l3EiMVnmc2Fjma2yrJ_6YG2R6Ig&s=10"
+                        alt="Duolingo"
+                        class="resource-image"
+                    >
+
+                    <div class="resource-details">
+                        <h3>Duolingo</h3>
+                        <p>Вивчення мов</p>
+                    </div>
+
+                    <a
+                        class="pill-button"
+                        href="https://www.duolingo.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Перейти
+                    </a>
+
+                </article>
+
+                <!-- KAHOOT -->
+
+                <article class="resource-item">
+
+                    <img
+                        src="https://logos-world.net/wp-content/uploads/2022/02/Kahoot-Symbol.png"
+                        alt="Kahoot"
+                        class="resource-image"
+                    >
+
+                    <div class="resource-details">
+                        <h3>Kahoot</h3>
+                        <p>Інтерактивні вікторини</p>
+                    </div>
+
+                    <a
+                        class="pill-button"
+                        href="https://kahoot.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Перейти
+                    </a>
+
+                </article>
+
+                <!-- PROMETHEUS -->
+
+                <article class="resource-item">
+
+                    <img
+                        src="https://prometheus.org.ua/wp-content/uploads/2022/10/logo_yellow.png"
+                        alt="Prometheus"
+                        class="resource-image"
+                    >
+
+                    <div class="resource-details">
+                        <h3>Prometheus</h3>
+                        <p>Онлайн-курси</p>
+                    </div>
+
+                    <a
+                        class="pill-button"
+                        href="https://prometheus.org.ua"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Перейти
+                    </a>
+
+                </article>
+
+                <!-- LEARNINGAPPS -->
+
+                <article class="resource-item">
+
+                    <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBj_1I_oLu4xvaIX_CJ62v-Mr0yQZOMVhXlKs0bxj4BA&s=10"
+                        alt="LearningApps"
+                        class="resource-image"
+                    >
+
+                    <div class="resource-details">
+                        <h3>LearningApps</h3>
+                        <p>Інтерактивні вправи</p>
+                    </div>
+
+                    <a
+                        class="pill-button"
+                        href="https://learningapps.org"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Перейти
+                    </a>
+
+                </article>
+
+                <!-- EDERA -->
+
+                <article class="resource-item">
+
+                    <img
+                        src="https://pbs.twimg.com/profile_images/915194721840107520/tWVhZ1Gz_400x400.jpg"
+                        alt="EdEra"
+                        class="resource-image"
+                    >
+
+                    <div class="resource-details">
+                        <h3>EdEra</h3>
+                        <p>Навчальні відео</p>
+                    </div>
+
+                    <a
+                        class="pill-button"
+                        href="https://www.ed-era.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Перейти
+                    </a>
+
+                </article>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- =====================================
+         ПІДВАЛ
+    ====================================== -->
+
+    <footer class="site-footer">
+        <div class="footer-bar">
+            <div class="footer-inner">
+
+                <!-- EMAIL -->
+
+                <a
+                    class="footer-item"
+                    href="mailto:dahsa.fialkovska@gmail.com"
+                >
+                    <svg
+                        width="22"
+                        height="22"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                    >
+                        <rect
+                            x="2"
+                            y="4"
+                            width="20"
+                            height="16"
+                            rx="2"
+                        />
+                        <path d="m22 7-10 6L2 7" />
+                    </svg>
+
+                    <span>
+                        dahsa.fialkovska@gmail.com
+                    </span>
+                </a>
+
+                <!-- VIBER -->
+
+                <a
+                    class="footer-item"
+                    href="https://www.viber.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <svg
+                        width="22"
+                        height="22"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                    >
+                        <path
+                            d="M21 11.5a8.38 8.38 0 0 1-.9 3.8
+                               8.5 8.5 0 0 1-7.6 4.7
+                               8.38 8.38 0 0 1-3.8-.9
+                               L3 21l1.9-5.7
+                               a8.38 8.38 0 0 1-.9-3.8
+                               8.5 8.5 0 0 1 4.7-7.6
+                               8.38 8.38 0 0 1 3.8-.9h.5
+                               a8.48 8.48 0 0 1 8 8v.5z"
+                        />
+                    </svg>
+
+                    <span>Viber</span>
+                </a>
+
+                <!-- FACEBOOK -->
+
+                <a
+                    class="footer-item"
+                    href="https://www.facebook.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <svg
+                        width="22"
+                        height="22"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        aria-hidden="true"
+                    >
+                        <path
+                            d="M22 12a10 10 0 1 0-11.56 9.88v-6.99
+                               H7.9V12h2.54V9.8
+                               c0-2.5 1.49-3.89 3.77-3.89
+                               1.09 0 2.23.19 2.23.19v2.46
+                               h-1.26c-1.24 0-1.63.77-1.63 1.56V12
+                               h2.77l-.44 2.89h-2.33v6.99
+                               A10 10 0 0 0 22 12z"
+                        />
+                    </svg>
+
+                    <span>Facebook</span>
+                </a>
+
+                <!-- INSTAGRAM -->
+
+                <a
+                    class="footer-item"
+                    href="https://www.instagram.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <svg
+                        width="22"
+                        height="22"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                    >
+                        <rect
+                            x="2"
+                            y="2"
+                            width="20"
+                            height="20"
+                            rx="5"
+                        />
+                        <circle cx="12" cy="12" r="4" />
+                        <circle
+                            cx="17.5"
+                            cy="6.5"
+                            r="1"
+                            fill="currentColor"
+                            stroke="none"
+                        />
+                    </svg>
+
+                    <span>Instagram</span>
+                </a>
+
+                <!-- УКРАЇНА -->
+
+                <div class="footer-item">
+                    <svg
+                        width="22"
+                        height="22"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                    >
+                        <path
+                            d="M20 10c0 5-8 11-8 11S4 15 4 10
+                               a8 8 0 1 1 16 0z"
+                        />
+                        <circle cx="12" cy="10" r="2.5" />
+                    </svg>
+
+                    <span>Україна</span>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+    <!-- =====================================
+         КНОПКА "НАГОРУ"
+    ====================================== -->
+
+    <button
+        id="backToTop"
+        class="back-to-top"
+        type="button"
+        aria-label="Повернутися нагору"
+        title="Повернутися нагору"
+    >
+        ↑
+    </button>
+
+    <!-- =====================================
+         JAVASCRIPT
+    ====================================== -->
+
+    <script>
+        // =====================================
+        // ВЕРХНІ ВИПАДАЮЧІ МЕНЮ
+        // =====================================
+
+        const dropdowns = document.querySelectorAll(".dropdown");
+
+        function closeAllDropdowns() {
+            dropdowns.forEach(dropdown => {
+                dropdown.classList.remove("open");
+
+                const button = dropdown.querySelector(
+                    ".dropdown-toggle"
+                );
+
+                if (button) {
+                    button.setAttribute("aria-expanded", "false");
+                }
+            });
+
+            document.querySelectorAll(
+                ".practice-subdropdown"
+            ).forEach(submenu => {
+                submenu.classList.remove("subopen");
+
+                const button = submenu.querySelector(
+                    ".practice-subtoggle"
+                );
+
+                if (button) {
+                    button.setAttribute("aria-expanded", "false");
+                }
+            });
+        }
+
+        dropdowns.forEach(dropdown => {
+            const button = dropdown.querySelector(
+                ".dropdown-toggle"
+            );
+
+            if (!button) return;
+
+            button.addEventListener("click", function (event) {
+                event.stopPropagation();
+
+                const wasOpen = dropdown.classList.contains("open");
+
+                closeAllDropdowns();
+
+                if (!wasOpen) {
+                    dropdown.classList.add("open");
+                    button.setAttribute("aria-expanded", "true");
+                }
+            });
+        });
+
+        // =====================================
+        // ДРУГИЙ РІВЕНЬ МЕНЮ ПРАКТИКИ
+        // =====================================
+
+        document.querySelectorAll(
+            ".practice-subdropdown"
+        ).forEach(submenu => {
+            const button = submenu.querySelector(
+                ".practice-subtoggle"
+            );
+
+            if (!button) return;
+
+            button.addEventListener("click", function (event) {
+                event.stopPropagation();
+
+                const wasOpen = submenu.classList.contains("subopen");
+
+                document.querySelectorAll(
+                    ".practice-subdropdown"
+                ).forEach(item => {
+                    item.classList.remove("subopen");
+
+                    const itemButton = item.querySelector(
+                        ".practice-subtoggle"
+                    );
+
+                    if (itemButton) {
+                        itemButton.setAttribute(
+                            "aria-expanded",
+                            "false"
+                        );
+                    }
+                });
+
+                if (!wasOpen) {
+                    submenu.classList.add("subopen");
+                    button.setAttribute("aria-expanded", "true");
+                }
+            });
+        });
+
+        // =====================================
+        // ЗАКРИТТЯ МЕНЮ ПРИ НАТИСКАННІ ПОЗА НИМ
+        // =====================================
+
+        document.addEventListener("click", function (event) {
+            if (!event.target.closest(".dropdown")) {
+                closeAllDropdowns();
+            }
+        });
+
+        // =====================================
+        // ЗАКРИТТЯ МЕНЮ КЛАВІШЕЮ ESCAPE
+        // =====================================
+
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "Escape") {
+                closeAllDropdowns();
+            }
+        });
+
+        // =====================================
+        // КНОПКА ПОВЕРНЕННЯ НАГОРУ
+        // =====================================
+
+        const backToTopButton = document.getElementById(
+            "backToTop"
+        );
+
+        function updateBackToTop() {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.add("show");
+            } else {
+                backToTopButton.classList.remove("show");
+            }
+        }
+
+        window.addEventListener("scroll", updateBackToTop, {
+            passive: true
+        });
+
+        updateBackToTop();
+
+        backToTopButton.addEventListener("click", function () {
+            const reducedMotion = window.matchMedia(
+                "(prefers-reduced-motion: reduce)"
+            ).matches;
+
+            window.scrollTo({
+                top: 0,
+                behavior: reducedMotion ? "instant" : "smooth"
+            });
+        });
+    </script>
+
+</body>
+</html>

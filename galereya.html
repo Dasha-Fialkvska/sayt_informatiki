@@ -1,0 +1,1267 @@
+
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Фотогалерея уроків інформатики, учнівських проєктів, конкурсів і шкільних заходів.">
+    <title>Галерея — Сайт учителя інформатики</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        main.page-container {
+            flex: 1;
+        }
+
+        /* ===== ГАЛЕРЕЯ ===== */
+
+        .gallery-page {
+            padding-bottom: 60px;
+        }
+
+        .gallery-section {
+            margin-top: 45px;
+        }
+
+        /* ===== КАТЕГОРІЇ ===== */
+
+        .gallery-filters {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 35px;
+        }
+
+        .gallery-filter {
+            padding: 12px 24px;
+            border: 1px solid #bfdbfe;
+            border-radius: 30px;
+            background: #f0f6ff;
+            color: #123b8a;
+            font: inherit;
+            font-size: 17px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .gallery-filter:hover {
+            background: #dbeafe;
+            transform: translateY(-2px);
+        }
+
+        .gallery-filter.active {
+            background: linear-gradient(
+                110deg,
+                #123b8a,
+                #2563eb,
+                #38bdf8
+            );
+            color: white;
+            border-color: #2563eb;
+            box-shadow: 0 6px 16px rgba(37, 99, 235, 0.2);
+        }
+
+        /* ===== СІТКА ФОТО ===== */
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 24px;
+        }
+
+        .gallery-card {
+            min-width: 0;
+            overflow: hidden;
+            border: 1px solid #e2eaf6;
+            border-radius: 18px;
+            background: white;
+            box-shadow: 0 8px 25px rgba(28, 69, 130, 0.08);
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 14px 30px rgba(28, 69, 130, 0.16);
+        }
+
+        .gallery-image-button {
+            display: block;
+            width: 100%;
+            padding: 0;
+            border: none;
+            background: #eaf3ff;
+            cursor: zoom-in;
+            overflow: hidden;
+        }
+
+        .gallery-image {
+            display: block;
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-image-button:hover .gallery-image {
+            transform: scale(1.05);
+        }
+
+        /* ===== ПІДПИСИ ===== */
+
+        .gallery-card-content {
+            padding: 17px 20px 20px;
+        }
+
+        .gallery-card-content h3 {
+            margin: 0 0 10px;
+            color: #102f56;
+            font-size: 20px;
+            line-height: 1.4;
+        }
+
+        .gallery-tag {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            background: #eaf3ff;
+            color: #123b8a;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        /* ===== ЗБІЛЬШЕНЕ ФОТО ===== */
+
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 65px 85px;
+            background: rgba(7, 17, 36, 0.9);
+        }
+
+        .lightbox[hidden] {
+            display: none;
+        }
+
+        .lightbox-content {
+            position: relative;
+            width: min(1100px, 100%);
+            height: min(700px, calc(100vh - 130px));
+            background: #101b2e;
+            border: 2px solid rgba(255, 255, 255, 0.85);
+            border-radius: 18px;
+            box-shadow: 0 20px 65px rgba(0, 0, 0, 0.4);
+            overflow: visible;
+        }
+
+        .lightbox-image {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 16px;
+        }
+
+        .lightbox-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 25px 22px 18px;
+            border-radius: 0 0 16px 16px;
+            background: linear-gradient(
+                transparent,
+                rgba(0, 0, 0, 0.85)
+            );
+            color: white;
+            font-size: 17px;
+            font-weight: 600;
+        }
+
+        .lightbox-counter {
+            flex-shrink: 0;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 46px;
+            height: 46px;
+            border: none;
+            border-radius: 50%;
+            background: white;
+            color: #102f56;
+            font-size: 30px;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .lightbox-close:hover {
+            background: #dbeafe;
+        }
+
+        .lightbox-arrow {
+            position: fixed;
+            top: 50%;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 54px;
+            height: 54px;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.35);
+            color: white;
+            font-size: 38px;
+            cursor: pointer;
+            transform: translateY(-50%);
+            transition: background 0.2s;
+        }
+
+        .lightbox-arrow:hover {
+            background: rgba(37, 99, 235, 0.85);
+        }
+
+        .lightbox-prev {
+            left: 20px;
+        }
+
+        .lightbox-next {
+            right: 20px;
+        }
+
+        /* ===== АДАПТИВНІСТЬ ===== */
+
+        @media (max-width: 900px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .lightbox {
+                padding: 55px 60px;
+            }
+
+            .lightbox-content {
+                height: min(600px, calc(100vh - 110px));
+            }
+        }
+
+        @media (max-width: 600px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+
+            .gallery-filter {
+                padding: 10px 16px;
+                font-size: 15px;
+            }
+
+            .gallery-image {
+                height: 240px;
+            }
+
+            .gallery-card-content h3 {
+                font-size: 18px;
+            }
+
+            .lightbox {
+                padding: 60px 12px;
+            }
+
+            .lightbox-content {
+                width: 100%;
+                height: min(500px, calc(100vh - 150px));
+            }
+
+            .lightbox-arrow {
+                top: auto;
+                bottom: 12px;
+                width: 40px;
+                height: 40px;
+                font-size: 28px;
+                transform: none;
+            }
+
+            .lightbox-prev {
+                left: 20px;
+            }
+
+            .lightbox-next {
+                right: 20px;
+            }
+
+            .lightbox-close {
+                top: -45px;
+                right: 0;
+                width: 40px;
+                height: 40px;
+            }
+
+            .lightbox-info {
+                padding: 20px 12px 12px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body id="top">
+
+    <!-- =====================================
+         ГОЛОВНЕ МЕНЮ
+    ====================================== -->
+
+    <header class="site-header">
+        <nav class="site-nav" aria-label="Основне меню">
+            <ul class="site-menu">
+
+                <li>
+                    <a href="index.html">Головна</a>
+                </li>
+
+                <li>
+                    <a href="about.html">Про вчителя</a>
+                </li>
+
+                <!-- КЛАСИ -->
+                <li class="dropdown">
+                    <button
+                        class="dropdown-toggle"
+                        type="button"
+                        aria-expanded="false"
+                        aria-controls="learning-menu"
+                    >
+                        Класи ▾
+                    </button>
+
+                    <ul class="submenu" id="learning-menu">
+                        <li><a href="class5.html">5 клас</a></li>
+                        <li><a href="class6.html">6 клас</a></li>
+                        <li><a href="class7.html">7 клас</a></li>
+                        <li><a href="class8.html">8 клас</a></li>
+                        <li><a href="class9.html">9 клас</a></li>
+                    </ul>
+                </li>
+
+                <!-- УЧНЯМ -->
+                <li class="dropdown">
+                    <button
+                        class="dropdown-toggle"
+                        type="button"
+                        aria-expanded="false"
+                        aria-controls="students-menu"
+                    >
+                        Учням ▾
+                    </button>
+
+                    <ul class="submenu" id="students-menu">
+                        <li>
+                            <a href="uchni_rozklad.html">
+                                Розклад уроків
+                            </a>
+                        </li>
+                        <li>
+                            <a href="uchni_bezpeka.html">
+                                Правила безпеки
+                            </a>
+                        </li>
+                        <li>
+                            <a href="uchni_porady.html">
+                                Поради для навчання
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <!-- ГАЛЕРЕЯ -->
+                <li>
+                    <a href="galereya.html" aria-current="page">
+                        Галерея
+                    </a>
+                </li>
+
+                <!-- ПЕДАГОГІЧНА ПРАКТИКА -->
+                <li class="dropdown practice-dropdown">
+                    <button
+                        class="dropdown-toggle"
+                        type="button"
+                        aria-expanded="false"
+                        aria-controls="practice-menu"
+                    >
+                        Педагогічна практика ▾
+                    </button>
+
+                    <ul class="submenu" id="practice-menu">
+
+                        <li class="practice-subdropdown">
+                            <button
+                                class="practice-subtoggle"
+                                type="button"
+                                aria-expanded="false"
+                                aria-controls="practice-zzso-menu"
+                            >
+                                <span>
+                                    Педагогічна практика в ЗЗСО
+                                </span>
+
+                                <span
+                                    class="practice-arrow"
+                                    aria-hidden="true"
+                                >
+                                    ▸
+                                </span>
+                            </button>
+
+                            <ul
+                                class="practice-submenu"
+                                id="practice-zzso-menu"
+                            >
+                                <li>
+                                    <a href="praktika_zzso_info.html">
+                                        Загальна інформація
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="praktika_zzso_uroky.html">
+                                        Плани-конспекти уроків
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="praktika_zzso_kalendar.html">
+                                        Календарні планування
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="praktika_zpo.html">
+                                Педагогічна практика в ЗПО
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <!-- КОНТАКТИ -->
+                <li>
+                    <a href="kontakty.html">Контакти</a>
+                </li>
+
+            </ul>
+        </nav>
+    </header>
+
+    <!-- =====================================
+         ОСНОВНИЙ ВМІСТ
+    ====================================== -->
+
+    <main class="page-container gallery-page">
+
+        <section class="class-intro">
+            <h1>Галерея</h1>
+
+            <p>
+                Цікаві моменти зі шкільного життя:
+                уроки інформатики, творчі роботи учнів,
+                конкурси, навчальні проєкти та заходи.
+            </p>
+        </section>
+
+        <section class="gallery-section">
+
+            <div class="section-header centered">
+                <h2>Фотогалерея</h2>
+            </div>
+
+            <!-- КАТЕГОРІЇ -->
+            <div
+                class="gallery-filters"
+                role="group"
+                aria-label="Категорії фотографій"
+            >
+                <button
+                    class="gallery-filter active"
+                    type="button"
+                    data-category="all"
+                    aria-pressed="true"
+                >
+                    Усі фото
+                </button>
+
+                <button
+                    class="gallery-filter"
+                    type="button"
+                    data-category="lessons"
+                    aria-pressed="false"
+                >
+                    Уроки
+                </button>
+
+                <button
+                    class="gallery-filter"
+                    type="button"
+                    data-category="projects"
+                    aria-pressed="false"
+                >
+                    Проєкти
+                </button>
+
+                <button
+                    class="gallery-filter"
+                    type="button"
+                    data-category="competitions"
+                    aria-pressed="false"
+                >
+                    Конкурси
+                </button>
+
+                <button
+                    class="gallery-filter"
+                    type="button"
+                    data-category="events"
+                    aria-pressed="false"
+                >
+                    Заходи
+                </button>
+            </div>
+
+            <!-- СІТКА ФОТО -->
+            <div
+                class="gallery-grid"
+                id="gallery-grid"
+            ></div>
+
+        </section>
+    </main>
+
+    <!-- =====================================
+         ЗБІЛЬШЕНЕ ФОТО
+    ====================================== -->
+
+    <div
+        class="lightbox"
+        id="lightbox"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Перегляд фотографії"
+        hidden
+    >
+        <button
+            class="lightbox-arrow lightbox-prev"
+            id="lightbox-prev"
+            type="button"
+            aria-label="Попереднє фото"
+        >
+            &#8249;
+        </button>
+
+        <div class="lightbox-content">
+
+            <button
+                class="lightbox-close"
+                id="lightbox-close"
+                type="button"
+                aria-label="Закрити фотографію"
+            >
+                &times;
+            </button>
+
+            <img
+                class="lightbox-image"
+                id="lightbox-image"
+                alt=""
+            >
+
+            <div class="lightbox-info">
+                <span id="lightbox-title"></span>
+
+                <span
+                    class="lightbox-counter"
+                    id="lightbox-counter"
+                ></span>
+            </div>
+
+        </div>
+
+        <button
+            class="lightbox-arrow lightbox-next"
+            id="lightbox-next"
+            type="button"
+            aria-label="Наступне фото"
+        >
+            &#8250;
+        </button>
+    </div>
+
+    <!-- =====================================
+         УЗГОДЖЕНИЙ ПІДВАЛ
+    ====================================== -->
+
+    <footer class="site-footer">
+        <div class="footer-bar">
+            <div class="footer-inner">
+
+                <!-- EMAIL -->
+                <a
+                    class="footer-item"
+                    href="mailto:dahsa.fialkovska@gmail.com"
+                >
+                    <svg
+                        width="22"
+                        height="22"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                    >
+                        <rect
+                            x="2"
+                            y="4"
+                            width="20"
+                            height="16"
+                            rx="2"
+                        />
+                        <path d="m22 7-10 6L2 7"/>
+                    </svg>
+
+                    <span>dahsa.fialkovska@gmail.com</span>
+                </a>
+
+                <!-- VIBER -->
+                <a
+                    class="footer-item"
+                    href="https://www.viber.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <svg
+                        width="22"
+                        height="22"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                    >
+                        <path
+                            d="M21 11.5a8.38 8.38 0 0 1-.9 3.8
+                               8.5 8.5 0 0 1-7.6 4.7
+                               8.38 8.38 0 0 1-3.8-.9
+                               L3 21l1.9-5.7
+                               a8.38 8.38 0 0 1-.9-3.8
+                               8.5 8.5 0 0 1 4.7-7.6
+                               8.38 8.38 0 0 1 3.8-.9h.5
+                               a8.48 8.48 0 0 1 8 8v.5z"
+                        />
+                    </svg>
+
+                    <span>Viber</span>
+                </a>
+
+                <!-- FACEBOOK -->
+                <a
+                    class="footer-item"
+                    href="https://www.facebook.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <svg
+                        width="22"
+                        height="22"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        aria-hidden="true"
+                    >
+                        <path
+                            d="M22 12a10 10 0 1 0-11.56 9.88v-6.99
+                               H7.9V12h2.54V9.8
+                               c0-2.5 1.49-3.89 3.77-3.89
+                               1.09 0 2.23.19 2.23.19v2.46
+                               h-1.26c-1.24 0-1.63.77-1.63 1.56V12
+                               h2.77l-.44 2.89h-2.33v6.99
+                               A10 10 0 0 0 22 12z"
+                        />
+                    </svg>
+
+                    <span>Facebook</span>
+                </a>
+
+                <!-- INSTAGRAM -->
+                <a
+                    class="footer-item"
+                    href="https://www.instagram.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <svg
+                        width="22"
+                        height="22"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                    >
+                        <rect
+                            x="2"
+                            y="2"
+                            width="20"
+                            height="20"
+                            rx="5"
+                        />
+                        <circle cx="12" cy="12" r="4"/>
+                        <circle
+                            cx="17.5"
+                            cy="6.5"
+                            r="1"
+                            fill="currentColor"
+                            stroke="none"
+                        />
+                    </svg>
+
+                    <span>Instagram</span>
+                </a>
+
+                <!-- УКРАЇНА -->
+                <div class="footer-item">
+                    <svg
+                        width="22"
+                        height="22"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                    >
+                        <path
+                            d="M20 10c0 5-8 11-8 11S4 15 4 10
+                               a8 8 0 1 1 16 0z"
+                        />
+                        <circle cx="12" cy="10" r="2.5"/>
+                    </svg>
+
+                    <span>Україна</span>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+    <!-- =====================================
+         КНОПКА "НАГОРУ"
+    ====================================== -->
+
+    <button
+        id="backToTop"
+        class="back-to-top"
+        type="button"
+        aria-label="Повернутися нагору"
+        title="Повернутися нагору"
+    >
+        ↑
+    </button>
+
+    <!-- =====================================
+         JAVASCRIPT
+    ====================================== -->
+
+    <script>
+        // ===== ФОТОГРАФІЇ =====
+        // Замість тестових Unsplash використано 9 наданих фото.
+
+        const testImages = [
+            "https://fs01.vseosvita.ua/01005u75-b859-779x446.jpg",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2-eWTKpQErDNbQ2do3J_lB12UHCQsSYcnQJ7xbdaYlg&s=1600",
+            "https://tickikids.ams3.cdn.digitaloceanspaces.com/z1.cache/gallery/activities/61010/image_62e926241a7d36.44145803.jpg",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfhERYyJMVI0rmYBjPTkdkVGqdGZKsitPdDz-BhB6pOhAHk52rvcySMlQ&s=1600",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRR_jDlS8mtgIWqWU_a__Ngiq7ByB_yiouDRY4y2PDpD7CFkrik7waJZTU&s=1600",
+            "https://protocol.ua/userfiles/54801/Protocol2020/shkola.jpeg",
+            "https://media.dyvys.info/2020/06/shkola.jpg",
+            "https://nus.org.ua/wp-content/uploads/2022/01/CHy-potribni-vashij-shkoli-uroky-dobrochesnosti.-Rozpovidayut-uchytelka-j-dyrektorka-shkoly-e1642526845523.jpg",
+            "https://imglife.pravda.com.ua/images/doc/9/e/9e71d1e-racorn-depositphotos.jpg"
+        ];
+
+        // ===== СТВОРЕННЯ ФОТО =====
+
+        function createPhotos(category, title, startIndex) {
+            return Array.from({ length: 9 }, (_, i) => ({
+                src: testImages[
+                    (startIndex + i) % testImages.length
+                ],
+                title: `${title} №${i + 1}`,
+                category: category
+            }));
+        }
+
+        // ===== КАТЕГОРІЇ =====
+
+        const galleryData = {
+            lessons: createPhotos(
+                "Уроки",
+                "Урок інформатики",
+                0
+            ),
+
+            projects: createPhotos(
+                "Проєкти",
+                "Учнівський проєкт",
+                3
+            ),
+
+            competitions: createPhotos(
+                "Конкурси",
+                "Конкурс",
+                6
+            ),
+
+            events: createPhotos(
+                "Заходи",
+                "Шкільний захід",
+                9
+            )
+        };
+
+        // ===== УСІ ФОТО =====
+
+        galleryData.all = [
+            galleryData.lessons[0],
+            galleryData.projects[0],
+            galleryData.competitions[0],
+            galleryData.events[0],
+            galleryData.lessons[1],
+            galleryData.projects[1],
+            galleryData.competitions[1],
+            galleryData.events[1],
+            galleryData.lessons[2]
+        ];
+
+        // ===== ЕЛЕМЕНТИ =====
+
+        const galleryGrid =
+            document.getElementById("gallery-grid");
+
+        const filterButtons =
+            document.querySelectorAll(".gallery-filter");
+
+        const lightbox =
+            document.getElementById("lightbox");
+
+        const lightboxImage =
+            document.getElementById("lightbox-image");
+
+        const lightboxTitle =
+            document.getElementById("lightbox-title");
+
+        const lightboxCounter =
+            document.getElementById("lightbox-counter");
+
+        const closeButton =
+            document.getElementById("lightbox-close");
+
+        const prevButton =
+            document.getElementById("lightbox-prev");
+
+        const nextButton =
+            document.getElementById("lightbox-next");
+
+        let activeCategory = "all";
+        let currentIndex = 0;
+        let previousFocus = null;
+
+        // ===== ВІДОБРАЖЕННЯ ГАЛЕРЕЇ =====
+
+        function renderGallery() {
+            galleryGrid.replaceChildren();
+
+            const photos = galleryData[activeCategory];
+
+            photos.forEach((photo, index) => {
+                const card =
+                    document.createElement("article");
+
+                card.className = "gallery-card";
+
+                const button =
+                    document.createElement("button");
+
+                button.className = "gallery-image-button";
+                button.type = "button";
+
+                button.setAttribute(
+                    "aria-label",
+                    `Збільшити фото: ${photo.title}`
+                );
+
+                const image =
+                    document.createElement("img");
+
+                image.className = "gallery-image";
+                image.src = photo.src;
+                image.alt = photo.title;
+                image.loading = "lazy";
+
+                button.appendChild(image);
+
+                const content =
+                    document.createElement("div");
+
+                content.className = "gallery-card-content";
+
+                const heading =
+                    document.createElement("h3");
+
+                heading.textContent = photo.title;
+
+                const tag =
+                    document.createElement("span");
+
+                tag.className = "gallery-tag";
+                tag.textContent = photo.category;
+
+                content.appendChild(heading);
+                content.appendChild(tag);
+
+                card.appendChild(button);
+                card.appendChild(content);
+
+                button.addEventListener("click", () => {
+                    openLightbox(index, button);
+                });
+
+                galleryGrid.appendChild(card);
+            });
+        }
+
+        // ===== ПЕРЕМИКАННЯ КАТЕГОРІЙ =====
+
+        filterButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                activeCategory = button.dataset.category;
+
+                filterButtons.forEach(item => {
+                    const selected = item === button;
+
+                    item.classList.toggle("active", selected);
+
+                    item.setAttribute(
+                        "aria-pressed",
+                        String(selected)
+                    );
+                });
+
+                renderGallery();
+            });
+        });
+
+        // ===== ВІДКРИТТЯ ФОТО =====
+
+        function openLightbox(index, button) {
+            const thumbnail = button.querySelector("img");
+
+            if (
+                !thumbnail.complete ||
+                thumbnail.naturalWidth === 0
+            ) {
+                return;
+            }
+
+            previousFocus = button;
+            currentIndex = index;
+
+            updateLightbox();
+
+            lightbox.hidden = false;
+            document.body.style.overflow = "hidden";
+
+            closeButton.focus();
+        }
+
+        // ===== ОНОВЛЕННЯ ФОТО =====
+
+        function updateLightbox() {
+            const photos = galleryData[activeCategory];
+            const photo = photos[currentIndex];
+
+            lightboxImage.src = photo.src;
+            lightboxImage.alt = photo.title;
+
+            lightboxTitle.textContent = photo.title;
+
+            lightboxCounter.textContent =
+                `${currentIndex + 1} / ${photos.length}`;
+        }
+
+        // ===== НАСТУПНЕ ФОТО =====
+
+        function nextPhoto() {
+            const photos = galleryData[activeCategory];
+
+            currentIndex =
+                (currentIndex + 1) % photos.length;
+
+            updateLightbox();
+        }
+
+        // ===== ПОПЕРЕДНЄ ФОТО =====
+
+        function prevPhoto() {
+            const photos = galleryData[activeCategory];
+
+            currentIndex =
+                (currentIndex - 1 + photos.length) %
+                photos.length;
+
+            updateLightbox();
+        }
+
+        // ===== ЗАКРИТТЯ ФОТО =====
+
+        function closeLightbox() {
+            lightbox.hidden = true;
+            lightboxImage.removeAttribute("src");
+
+            document.body.style.overflow = "";
+
+            if (
+                previousFocus &&
+                previousFocus.isConnected
+            ) {
+                previousFocus.focus();
+            }
+        }
+
+        closeButton.addEventListener("click", closeLightbox);
+        prevButton.addEventListener("click", prevPhoto);
+        nextButton.addEventListener("click", nextPhoto);
+
+        lightbox.addEventListener("click", event => {
+            if (event.target === lightbox) {
+                closeLightbox();
+            }
+        });
+
+        // ===== КЕРУВАННЯ КЛАВІАТУРОЮ =====
+
+        document.addEventListener("keydown", event => {
+            if (lightbox.hidden) return;
+
+            if (event.key === "Escape") {
+                closeLightbox();
+            }
+
+            if (event.key === "ArrowRight") {
+                nextPhoto();
+            }
+
+            if (event.key === "ArrowLeft") {
+                prevPhoto();
+            }
+
+            if (event.key === "Tab") {
+                const controls = [
+                    closeButton,
+                    prevButton,
+                    nextButton
+                ];
+
+                const index =
+                    controls.indexOf(document.activeElement);
+
+                event.preventDefault();
+
+                const nextIndex = event.shiftKey
+                    ? (index - 1 + controls.length) % controls.length
+                    : (index + 1) % controls.length;
+
+                controls[nextIndex].focus();
+            }
+        });
+
+        // ===== ВИПАДАЮЧІ МЕНЮ =====
+
+        const dropdowns =
+            document.querySelectorAll(".dropdown");
+
+        function closeDropdowns() {
+            dropdowns.forEach(dropdown => {
+                dropdown.classList.remove("open");
+
+                const button =
+                    dropdown.querySelector(".dropdown-toggle");
+
+                if (button) {
+                    button.setAttribute("aria-expanded", "false");
+                }
+            });
+
+            document.querySelectorAll(
+                ".practice-subdropdown"
+            ).forEach(submenu => {
+                submenu.classList.remove("subopen");
+
+                const button =
+                    submenu.querySelector(".practice-subtoggle");
+
+                if (button) {
+                    button.setAttribute("aria-expanded", "false");
+                }
+            });
+        }
+
+        // ===== МЕНЮ ПЕРШОГО РІВНЯ =====
+
+        dropdowns.forEach(dropdown => {
+            const button =
+                dropdown.querySelector(".dropdown-toggle");
+
+            if (!button) return;
+
+            button.addEventListener("click", event => {
+                event.stopPropagation();
+
+                const wasOpen =
+                    dropdown.classList.contains("open");
+
+                closeDropdowns();
+
+                if (!wasOpen) {
+                    dropdown.classList.add("open");
+
+                    button.setAttribute(
+                        "aria-expanded",
+                        "true"
+                    );
+                }
+            });
+        });
+
+        // ===== ВКЛАДЕНЕ МЕНЮ ПРАКТИКИ =====
+
+        document.querySelectorAll(
+            ".practice-subdropdown"
+        ).forEach(submenu => {
+            const button =
+                submenu.querySelector(".practice-subtoggle");
+
+            if (!button) return;
+
+            button.addEventListener("click", event => {
+                event.stopPropagation();
+
+                const wasOpen =
+                    submenu.classList.contains("subopen");
+
+                document.querySelectorAll(
+                    ".practice-subdropdown"
+                ).forEach(item => {
+                    item.classList.remove("subopen");
+
+                    const itemButton =
+                        item.querySelector(".practice-subtoggle");
+
+                    if (itemButton) {
+                        itemButton.setAttribute(
+                            "aria-expanded",
+                            "false"
+                        );
+                    }
+                });
+
+                if (!wasOpen) {
+                    submenu.classList.add("subopen");
+
+                    button.setAttribute(
+                        "aria-expanded",
+                        "true"
+                    );
+                }
+            });
+        });
+
+        // ===== ЗАКРИТТЯ МЕНЮ =====
+
+        document.addEventListener("click", event => {
+            if (!event.target.closest(".dropdown")) {
+                closeDropdowns();
+            }
+        });
+
+        document.addEventListener("keydown", event => {
+            if (event.key === "Escape") {
+                closeDropdowns();
+            }
+        });
+
+        // ===== КНОПКА "НАГОРУ" =====
+
+        const backToTopButton =
+            document.getElementById("backToTop");
+
+        function updateBackToTop() {
+            backToTopButton.classList.toggle(
+                "show",
+                window.scrollY > 300
+            );
+        }
+
+        window.addEventListener(
+            "scroll",
+            updateBackToTop,
+            { passive: true }
+        );
+
+        updateBackToTop();
+
+        backToTopButton.addEventListener("click", () => {
+            const reducedMotion = window.matchMedia(
+                "(prefers-reduced-motion: reduce)"
+            ).matches;
+
+            window.scrollTo({
+                top: 0,
+                behavior: reducedMotion ? "auto" : "smooth"
+            });
+        });
+
+        // ===== ЗАПУСК ГАЛЕРЕЇ =====
+
+        renderGallery();
+    </script>
+
+</body>
+</html>
